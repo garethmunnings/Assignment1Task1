@@ -38,6 +38,74 @@ public class Polynomial {
 
     }
 
+    @Override public String toString()
+    {
+        String poly = "";
+        //write the highest term
+        if(highestTerm > 1)
+        {
+            poly = terms.get(highestTerm) + "x^" + highestTerm;
+        }
+
+
+        //write all terms except x^1 and x^0
+        for(int i = highestTerm -1; i > 1; i--) {
+            if(terms.get(i) != null) {
+                if(terms.get(i) > 0) {
+                    poly = poly.concat("+ " + terms.get(i) + "x^" + i);
+                }
+                else {
+                    poly = poly.concat(terms.get(i) + "x^" + i);
+                }
+            }
+        }
+        //Write remaining terms
+        if(terms.get(1) != null)
+        {
+            if(poly == "")
+            {
+                if(terms.get(1) > 0) {
+                    poly = poly.concat(terms.get(1) + "x");
+                }
+                else{
+                    poly = poly.concat(terms.get(1) + "x");
+                }
+            }
+            else {
+                if(terms.get(1) > 0) {
+                    poly = poly.concat("+ " + terms.get(1) + "x");
+                }
+                else{
+                    poly = poly.concat(terms.get(1) + "x");
+                }
+            }
+
+
+        }
+        if(terms.get(0) != null)
+        {
+            if(poly == ""){
+                if(terms.get(0) > 0) {
+                    poly = poly.concat(terms.get(0) + "");
+                }
+                else{
+                    poly = poly.concat(terms.get(0) + "");
+                }
+            }
+            else{
+                if(terms.get(0) > 0) {
+                    poly = poly.concat("+ " + terms.get(0) + "");
+                }
+                else{
+                    poly = poly.concat(terms.get(0) + "");
+                }
+            }
+
+        }
+
+        return poly;
+    }
+
     public double evaluate(int x) {
         double y = 0;
         for(int i = 0; i <= highestTerm; i++) {
@@ -77,4 +145,21 @@ public class Polynomial {
         }
         return h;
     }
+
+    public Polynomial derivative(){
+        Polynomial d = new Polynomial();
+
+        for(int i = 0; i <= highestTerm; i++){
+            if(terms.get(i) != null) {
+                if(i > 0)
+                {
+                    d.setCoefficient(i - 1, terms.get(i) * i);
+                }
+            }
+        }
+
+
+        return d;
+    }
+
 }
