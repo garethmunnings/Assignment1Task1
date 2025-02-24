@@ -106,7 +106,7 @@ public class Polynomial {
         return poly;
     }
 
-    public double evaluate(int x) {
+    public double evaluate(double x) {
         double y = 0;
         for(int i = 0; i <= highestTerm; i++) {
             if(terms.get(i) != null) {

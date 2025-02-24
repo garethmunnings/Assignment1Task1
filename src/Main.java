@@ -7,6 +7,8 @@ public class Main {
         System.out.print("f(x) = ");
         System.out.println(f.toString());
 
+        System.out.println("The coefficient with exponent 1 is: " + f.getCoefficient(1));
+        System.out.println("f(2) = " + f.evaluate(2.0));
 
         Polynomial fprime = f.derivative();
         System.out.print("f'(x) = ");
